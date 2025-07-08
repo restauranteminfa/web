@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "/images/search?q=im%c3%a1genes+de+comida&id=CB4E7E6A5AF82025BF7DE2C2BF7C8D949987AD71&FORM=IACFIR";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=65f7becc2f5903268a47e76ad8b6bd045caa90e2102e336976fd1a5a064dff2cJmltdHM9MTc0ODkwODgwMA&ptn=3&ver=2&hsh=4&fclid=34cad2d6-cce0-626e-0368-c733cdd56342&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbSVjMyVhMWdlbmVzK2RlK2NvbWlkYSZpZD1DQjRFN0U2QTVBRjgyMDI1QkY3REUyQzJCRjdDOEQ5NDk5ODdBRDcxJkZPUk09SUFDRklS&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
